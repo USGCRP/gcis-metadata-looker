@@ -1,0 +1,20 @@
+{
+  "name": "metadata-looker",
+  "version": "1.0.0",
+  "description": "JS to display GCIS metadata",
+  "main": "js/looker.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "GCIS",
+    "metadata",
+    "TSU"
+  ],
+  "author": "Angel Li",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-sass": "^2.0.4"
+  }
+}

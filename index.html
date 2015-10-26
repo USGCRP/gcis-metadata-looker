@@ -1,0 +1,116 @@
+<!DOCtype>
+<html>
+<head>
+<title>Metadata NG Looker Demo</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<style>
+input, .btn { border-radius: 0 !important; }
+.well h3 { margin-top: 0; }
+.well { border-radius: 0; }
+</style>
+<script data-main="build/looker.js" src="build/require.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+	<h1>Metadata NG Looker Demo</h1>
+	<form class="form-horizontal figure-form">
+	    <div class="form-group">
+		<label for"input-figure" class="col-sm-2 control-label">Figure UUID</label>
+		<div class="col-sm-10">
+		    <input type="text" id="input-figure" class="get-fig form-control" value='report/usgcrp-climate-and-health-assessment-draft/chapter/food-safety--nutrition--and-distribution/figure/farm_to_table'>
+		</div>
+	    </div>
+	    <div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+		    <button class="btn btn-default get-figure" type="submit">Fetch</button>
+		</div>
+	    </div>
+	</form>
+
+	<hr/>
+
+	<form class="form-horizontal figure-form">
+	    <div class="form-group">
+		<label for"input-finding" class="col-sm-2 control-label">Finding UUID</label>
+		<div class="col-sm-10">
+		    <input type="text" id="input-finding" class="get-find form-control" value='/report/usgcrp-climate-and-health-assessment-draft/chapter/food-safety--nutrition--and-distribution/finding/increased-risk-of-foodborne-illness'>
+		</div>
+	    </div>
+	    <div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+		    <button class="btn btn-default get-finding" type="submit">Fetch</button>
+		</div>
+	    </div>
+	</form>
+
+	<hr/>
+
+	<form class="form-horizontal reference-form">
+	    <div class="form-group">
+		<label for="input-reference" class="col-sm-2 control-label">Reference UUID</label>
+		<div class="col-sm-10">
+		    <input type="text" id="input-reference" class="get-ref form-control" value="006ce4db-d72c-400a-a409-c6a536e55664">
+		</div>
+	    </div>
+	    <div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+		    <button class="btn btn-default get-reference" type="submit">Fetch</button>
+		</div>
+	    </div>
+	    <div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+		    <div class="well">
+			<h3>Reference</h3>
+			<div id="reference"></div>
+		    </div>
+		</div>
+	    </div>
+	</form>
+
+    </div>
+</div>
+
+<div id="metadata-finding-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="metadata-modal-label" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+	<div class="modal-content">
+	    <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<h2 style="color: #A94442;" class="modal-title">Key Finding</h2>
+	    </div>
+	    <div class="modal-body">
+		<div class="alert alert-danger" role="alert"><p></p></div>
+	    </div>
+	</div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script>
+    $(function() {
+	$("button.get-figure").on("click", function(e) {
+	    var uuid = $("input.get-fig").val();
+	    gcis_show_figure(uuid);
+	    e.preventDefault();
+	    return false;
+	});
+	$("button.get-reference").on("click", function(e) {
+	    var uuid = $("input.get-ref").val();
+	    gcis_show_reference(uuid, "div#reference");
+	    e.preventDefault();
+	    return false;
+	});
+	$("button.get-finding").on("click", function(e) {
+	    var uuid = $("input.get-find").val();
+	    $("#metadata-finding-modal h2.modal-title").html("Key Finding");
+	    $('#metadata-finding-modal').modal();
+	    gcis_show_finding(uuid, "#metadata-finding-modal");
+	    e.preventDefault();
+	    return false;
+	});
+    });
+</script>
+</body>
+</html>

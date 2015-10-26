@@ -1,0 +1,15 @@
+	{{> figure-images-common this}}
+	<div class="roww">
+	    <div class="td-l"># of Images</div>
+	    <div class="td-r">{{n_images}}</div>
+	</div>
+	<div class="roww">
+	    <div class="td-l">Datasets</div>
+	    <div class="td-r">
+	    {{#each datasets}}
+		{{#if @first}}<ul>{{/if}}
+		<li>{{dataset_name}}</li>
+		{{#if @last}}</ul>{{/if}}
+	    {{/each}}
+	    </div>
+	</div>

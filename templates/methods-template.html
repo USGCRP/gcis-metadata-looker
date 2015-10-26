@@ -1,0 +1,20 @@
+	{{#each (output_methods t1 t2)}}
+	    {{#if @first}}<div class="panel-group" id="metadata-summary-accordion" role="tablist" aria-multiselectable="true">{{/if}}
+	    	<div class="panel panel-default">
+		    <div class="panel-heading" role="tab" id="metadata-summary-header-{{@index}}">
+			<h4 class="panel-title">
+			    <a class="accordion-toggle" data-toggle="collapse" data-parent="#metadata-summary-accordion" href="#collapse-{{@index}}"
+			    {{#if @first}}aria-expanded="true"{{else}}aria-expanded="false"{{/if}}
+			     aria-controls="metadata-summary-accordion">
+				 {{name}}
+			    </a>
+			</h4>
+		    </div>
+		    <div id="collapse-{{@index}}" class="panel-collapse collapse {{#if @first}}in{{/if}}" role="tabpanel" aria-labelledby="metadata-summary-header-{{@index}}">
+		    	<div class="panel-body">
+			     {{output_dataset_details_tabs @index name datasets ../t2}}
+			</div>
+		    </div>
+		</div>
+	    {{#if @last}}</div>{{/if}}
+	{{/each}}

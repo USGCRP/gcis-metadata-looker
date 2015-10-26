@@ -1,0 +1,16 @@
+	<div class="roww" style="padding: 20px 0;">
+	    <div class="tabpanel">
+		<ul class="nav nav-tabs" role="tablist">
+		    {{#each images}}
+			<li role="presentation"{{#if @first}} class="active"{{/if}}><a href="#image{{@index}}" aria-controls="image{{@index}}" role="tab" data-toggle="tab">{{plus1 @index}}</a></li>
+		    {{/each}}
+		</ul>
+		<div class="tab-content">
+		    {{#each images}}
+			<div role="tabpanel" class="tab-pane fade in{{#if @first}} active{{/if}}" id="image{{@index}}">
+			    {{> figure-images-common this}}
+			</div>
+		    {{/each}}
+		</div>
+	    </div>
+	</div>
