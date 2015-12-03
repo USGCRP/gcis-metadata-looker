@@ -32,6 +32,7 @@ define([
     function GCIS_viewer() {
 		gcis = new GCIS();
 		this.gcis_server = gcis.getServer();
+		this.IE8 = gcis.isIE8();
 		this.figure_template = '';
 		this.figure_images_common_template = '';
 		this.image_template = '';
@@ -47,6 +48,16 @@ define([
 			Display a figure's metadata
 		*/
 		show_figure: function(uri, sect) {
+			/*
+				On IE8?
+			*/
+			if (this.IE8) {
+				var url = this.gcis_server;
+				url += (uri.indexOf("/") == 0) ? uri : ("/" + uri);
+				window.open(url, "_blank", "scrollbars=1,status=1,toolbar=1");
+				return;
+			}
+
 			/*
 				Register Handlebars helpers
 			*/
@@ -296,7 +307,7 @@ define([
 				$.ajax({
 					url: url + ".json?with_gcmd=1",
 					dataType: 'json',
-					async: false,
+					async: true,
 					context: this,
 					success: function(d) {
 						this.t1 = this._makeTier1(url, d);
@@ -384,7 +395,7 @@ define([
 									.css('z-index', 1039 + (10 * $('body').data('fv_open_modals')));
 							$('.modal-backdrop').not('fv-modal-stack')
 									.addClass('fv-modal-stack'); 
-							 $.unblockUI();
+							$.unblockUI();
 						 });
 					},
 					error: function(request, status, error) {
@@ -585,8 +596,17 @@ define([
 								}
 							}
 						},
-						error: function() {
-							console.log("Error!: " + url);
+						error: function(request, status, error) {
+							var msg = "Error: ";
+							if (request.status && request.status == 400) {
+								msg += request.responseText;
+							}
+							else {
+								msg += error;
+							}
+							//console.log("Error!: " + url);
+							alert(msg);
+							$.unblockUI();
 						}
 					});
 				}

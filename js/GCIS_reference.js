@@ -54,6 +54,12 @@ define([
 			var nj = {};
 			var ids = new Array();
 
+			if (this.IE8) {
+				var url = this.gcis_server + "/reference/" + uuid.trim() + ".json";
+				window.open(url, "_blank", "scrollbars=1,status=1,toolbar=1");
+				return;
+			}
+
 			if ($("#metadata-summary-modal").length == 0) {
 				$("body").append(metadataModalTemplateSrc);
 			}

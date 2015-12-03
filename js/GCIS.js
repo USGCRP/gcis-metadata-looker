@@ -415,6 +415,10 @@ define(['jquery', 'GCIS_reference'], function($, GCIS_reference) {
 	    return(dbName);
 	},
 
+	isIE8: function() {
+	    return (document.addEventListener) ? 0 : 1;
+	},
+
 	get_reference: function(uuid) {
 	    return("GCIS Reference...");
 	}
