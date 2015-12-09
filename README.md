@@ -41,7 +41,7 @@ The package uses the following external libraries:
 * [Bootstrap](http://getbootstrap.com)
 * [Handlebars](http://handlebarsjs.com/)
 * [citeproc-js](https://bitbucket.org/fbennett/citeproc-js/wiki/Home)
-* [matchHeight](https://cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.6.0/jquery.matchHeight-min'),
+* [matchHeight](https://cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.6.0/jquery.matchHeight-min')
 
 ## Optimizing ##
 
